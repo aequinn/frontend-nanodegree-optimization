@@ -1,0 +1,27 @@
+{
+  "name": "fend-optimization",
+  "version": "0.1.0",
+  "description": "Project for optimizing the critial render path for a site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aequinn/frontend-nanodegree-optimization.git"
+  },
+  "keywords": [
+    "optimization",
+    "crp"
+  ],
+  "author": "Anthony Quinn",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/aequinn/frontend-nanodegree-optimization/issues"
+  },
+  "homepage": "https://github.com/aequinn/frontend-nanodegree-optimization#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-jshint": "^1.12.0"
+  }
+}
