@@ -3,7 +3,7 @@ root/index.html
   - Remove webfont - No measurable change
   - Distinguish alternative css file as 'Print' - No measurable change
   - Moved script block for analytics to bottom of page - No measurable change
-  - Removed 'async' from perfmatters script
+  - Removed 'async' from perfmatters.js
 
 root/project-2048.html (no webfonts)
   - Initial Score: Mobile 75/100 (UX: 100/100); Desktop 88/100
