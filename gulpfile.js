@@ -7,6 +7,7 @@ var jshint = require('gulp-jshint'),
     lazypipe = require('lazypipe'),
     imageMin = require('gulp-imagemin'),
     pngQuant = require('imagemin-pngquant'),
+    imageResize = require('gulp-image-resize'),
     gulp = require('gulp');
 
 /*Compression Tasks for js*/
@@ -32,6 +33,10 @@ gulp.task('imgCompress', function(){
   return gulp.src(['./**/*.jpg','./**/*.png','!./node_modules/**', '!./dist/**'])
   .pipe(imgMinifyTasks());
 });
+
+/*Resize to */
+
+/*Resize to */
 
 /*Move html*/
 gulp.task('htmlMove', function(){
