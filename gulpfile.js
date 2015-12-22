@@ -34,9 +34,20 @@ gulp.task('imgCompress', function(){
   .pipe(imgMinifyTasks());
 });
 
-/*Resize to */
-
-/*Resize to */
+/*Resize to 100 */
+gulp.task('imgResize100', function(){
+  return gulp.src(['./**/pizzeria.jpg'] )
+  .pipe(imageResize({imageMagick: true, width : 480}))
+  .pipe(rename({suffix : '-480'}))
+  .pipe(gulp.dest('dist'));
+});
+/*Resize to 480*/
+gulp.task('imageResize480', function(){
+  return gulp.src(['./**/pizzeria.jpg'])
+  .pipe(imageResize({imageMagick: true, width : 100}))
+  .pipe(rename({suffix : '-100'}))
+  .pipe(gulp.dest('dist'));
+});
 
 /*Move html*/
 gulp.task('htmlMove', function(){
@@ -53,4 +64,4 @@ gulp.task('watchCSS', function(){
   gulp.watch(['./**/*.css', '!./node_modules/**', '!./dist/**'], ['cssCompress']);
 });
 
-gulp.task('default',['jsCompress','cssCompress','imgCompress','htmlMove']);
+gulp.task('default',['jsCompress','cssCompress','imgCompress','imgResize100','imageResize480','htmlMove']);
