@@ -64,4 +64,4 @@ gulp.task('watchCSS', function(){
   gulp.watch(['./**/*.css', '!./node_modules/**', '!./dist/**'], ['cssCompress']);
 });
 
-gulp.task('default',['jsCompress','cssCompress','imgCompress','imgResize100','imageResize480','htmlMove']);
+gulp.task('default',['jsCompress','cssCompress','imgResize100','imageResize480','imgCompress','htmlMove']);
