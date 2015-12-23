@@ -36,15 +36,15 @@ gulp.task('imgCompress', function(){
 
 /*Resize to 100 */
 gulp.task('imgResize100', function(){
-  return gulp.src(['./**/pizzeria.jpg'] )
-  .pipe(imageResize({imageMagick: true, width : 480, quality: .9}))
+  return gulp.src(['./**/pizzeria.jpg','!./node_modules/**', '!./dist/**'] )
+  .pipe(imageResize({imageMagick: true, width : 480, quality: .2}))
   .pipe(rename({suffix : '-480'}))
   .pipe(gulp.dest('dist'));
 });
 /*Resize to 480*/
 gulp.task('imageResize480', function(){
-  return gulp.src(['./**/pizzeria.jpg'])
-  .pipe(imageResize({imageMagick: true, width : 100, quality: .9}))
+  return gulp.src(['./**/pizzeria.jpg','!./node_modules/**', '!./dist/**'])
+  .pipe(imageResize({imageMagick: true, width : 100, quality: .75}))
   .pipe(rename({suffix : '-100'}))
   .pipe(gulp.dest('dist'));
 });
