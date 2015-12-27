@@ -28,7 +28,7 @@ gulp.task('cssCompress', function(){
 });
 
 /*Compression Tasks for images*/
-var imgMinifyTasks = lazypipe().pipe(imageMin,{progressive: true, use: [pngQuant(0)]}).pipe(gulp.dest, 'dist');
+var imgMinifyTasks = lazypipe().pipe(imageMin,{progressive: true, use: [pngQuant(20)]}).pipe(gulp.dest, 'dist');
 gulp.task('imgCompress', function(){
   return gulp.src(['./**/*.jpg','./**/*.png','!./node_modules/**', '!./dist/**'])
   .pipe(imgMinifyTasks());
