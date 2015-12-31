@@ -15,7 +15,7 @@ var jsHintTasks = lazypipe().pipe(jshint).pipe(jshint.reporter);
 var jsMinifyTasks = jsHintTasks.pipe(jsMinify);
 var jsTasks = jsMinifyTasks.pipe(gulp.dest,'dist');
 gulp.task('jsCompress', function(){
-  return gulp.src(['./**/*.js', '!./node_modules/**', '!./dist/**', '!./gulpfile.js'])
+  return gulp.src(['./src/**/*.js'])
   .pipe(jsTasks());
 });
 
@@ -23,27 +23,27 @@ gulp.task('jsCompress', function(){
 var cssMinifyTasks = lazypipe().pipe(cssMinify).pipe(rename,{suffix: "-min"});
 var cssTasks = cssMinifyTasks.pipe(gulp.dest, 'dist');
 gulp.task('cssCompress', function(){
-  return gulp.src(['./**/*.css','!./node_modules/**', '!./dist/**' ])
+  return gulp.src(['./src/**/*.css'])
   .pipe(cssTasks());
 });
 
 /*Compression Tasks for images*/
 var imgMinifyTasks = lazypipe().pipe(imageMin,{progressive: true, optimizationLevel:0, use: [pngQuant(0)]}).pipe(gulp.dest, 'dist');
 gulp.task('imgCompress', function(){
-  return gulp.src(['./**/*.jpg','./**/*.png','!./node_modules/**', '!./dist/**'])
+  return gulp.src(['./src/**/*.jpg','./src/**/*.png'])
   .pipe(imgMinifyTasks());
 });
 
 /*Resize to 100 */
 gulp.task('imgResize100', function(){
-  return gulp.src(['./**/pizzeria.jpg','!./node_modules/**', '!./dist/**'] )
+  return gulp.src(['./src/**/**/pizzeria.jpg'] )
   .pipe(imageResize({imageMagick: true, width : 480, quality: 0}))
   .pipe(rename({suffix : '-480'}))
   .pipe(gulp.dest(''));
 });
 /*Resize to 480*/
 gulp.task('imageResize480', function(){
-  return gulp.src(['./**/pizzeria.jpg','!./node_modules/**', '!./dist/**'])
+  return gulp.src(['./src/**/**/pizzeria.jpg'])
   .pipe(imageResize({imageMagick: true, width : 100, quality: .75}))
   .pipe(rename({suffix : '-100'}))
   .pipe(gulp.dest(''));
@@ -51,17 +51,17 @@ gulp.task('imageResize480', function(){
 
 /*Move html*/
 gulp.task('htmlMove', function(){
-  return gulp.src(['./**/*.html','!./node_modules/**', '!./dist/**'])
+  return gulp.src(['./src/**/*.html'])
   .pipe(gulp.dest('dist'));
 });
 
 /*Set to watch changes in files and run appropriate tasks*/
 gulp.task('watchJS', function(){
-  gulp.watch(['./**/*.js', '!./node_modules/**', '!./dist/**', '!./gulpfile.js'], ['jsCompress']);
+  gulp.watch(['./src/**/*.js'], ['jsCompress']);
 });
 
 gulp.task('watchCSS', function(){
-  gulp.watch(['./**/*.css', '!./node_modules/**', '!./dist/**'], ['cssCompress']);
+  gulp.watch(['./src/**/*.css'], ['cssCompress']);
 });
 
 gulp.task('default',['jsCompress','cssCompress','imgResize100','imageResize480','imgCompress','htmlMove']);
