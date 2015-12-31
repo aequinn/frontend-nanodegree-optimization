@@ -39,14 +39,14 @@ gulp.task('imgResize100', function(){
   return gulp.src(['./src/**/**/pizzeria.jpg'] )
   .pipe(imageResize({imageMagick: true, width : 480, quality: 0}))
   .pipe(rename({suffix : '-480'}))
-  .pipe(gulp.dest(''));
+  .pipe(gulp.dest('./src'));
 });
 /*Resize to 480*/
 gulp.task('imageResize480', function(){
   return gulp.src(['./src/**/**/pizzeria.jpg'])
   .pipe(imageResize({imageMagick: true, width : 100, quality: .75}))
   .pipe(rename({suffix : '-100'}))
-  .pipe(gulp.dest(''));
+  .pipe(gulp.dest('./src'));
 });
 
 /*Move html*/
