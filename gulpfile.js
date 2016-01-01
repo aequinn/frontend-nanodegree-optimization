@@ -63,6 +63,10 @@ gulp.task('htmlReplace', function(){
     src: 'js/perfmatters',
     tpl: '<script src="%s-min.js"></script>'
   },
+  jsMain: {
+    src: 'main',
+    tpl: '<script src="js/%s-min.js"></script>'
+  },
   cssPrint: {
     src: 'css/print',
     tpl: '<link href="%s-min.css" rel="stylesheet" media="print">'
@@ -70,6 +74,10 @@ gulp.task('htmlReplace', function(){
   cssStyle: {
     src: 'css/style',
     tpl: '<link rel="stylesheet" href="./%s-min.css">'
+  },
+  cssGrid: {
+    src: 'bootstrap-grid',
+    tpl: '<link rel="stylesheet" href="./css/$s-min.css">'
   }
   }))
   .pipe(gulp.dest('dist'));
