@@ -77,7 +77,7 @@ gulp.task('htmlReplace', function(){
   },
   cssGrid: {
     src: 'bootstrap-grid',
-    tpl: '<link rel="stylesheet" href="./css/$s-min.css">'
+    tpl: '<link rel="stylesheet" href="./css/%s-min.css">'
   }
   }))
   .pipe(gulp.dest('dist'));
