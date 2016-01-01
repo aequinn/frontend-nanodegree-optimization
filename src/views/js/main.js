@@ -394,7 +394,7 @@ var pizzaElementGenerator = function(i) {
   ul.innerHTML = makeRandomPizza();
   pizzaDescriptionContainer.appendChild(ul);
   pizzaContainer.appendChild(pizzaDescriptionContainer);
-
+  console.log(pizzaContainer);
   return pizzaContainer;
 };
 

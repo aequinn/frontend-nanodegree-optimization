@@ -8,6 +8,7 @@ var jshint = require('gulp-jshint'),
     imageMin = require('gulp-imagemin'),
     pngQuant = require('imagemin-pngquant'),
     imageResize = require('gulp-image-resize'),
+    htmlReplace = require('gulp-html-replace'),
     gulp = require('gulp');
 
 /*Compression Tasks for js*/
@@ -50,8 +51,27 @@ gulp.task('imageResize480', function(){
 });
 
 /*Move html*/
-gulp.task('htmlMove', function(){
-  return gulp.src(['./src/**/*.html'])
+// gulp.task('htmlMove', function(){
+//   return gulp.src(['./src/**/*.html'])
+//   .pipe(gulp.dest('dist'));
+// });
+
+gulp.task('htmlReplace', function(){
+  return gulp.src('./src/**/*.html')
+  .pipe(htmlReplace({
+  'js-perf': {
+    src: 'js/perfmatters',
+    tpl: '<script src="%s-min.js"></script>'
+  },
+  cssPrint: {
+    src: 'css/print',
+    tpl: '<link href="%s-min.css" rel="stylesheet" media="print">'
+  },
+  cssStyle: {
+    src: 'css/style',
+    tpl: '<link rel="stylesheet" href="./%s-min.css">'
+  }
+  }))
   .pipe(gulp.dest('dist'));
 });
 
@@ -64,4 +84,4 @@ gulp.task('watchCSS', function(){
   gulp.watch(['./src/**/*.css'], ['cssCompress']);
 });
 
-gulp.task('default',['jsCompress','cssCompress','imgResize100','imageResize480','imgCompress','htmlMove']);
+gulp.task('default',['jsCompress','cssCompress','imgResize100','imageResize480','imgCompress','htmlReplace']);
