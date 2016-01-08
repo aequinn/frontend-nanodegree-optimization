@@ -8,6 +8,8 @@
     <title>Anthony Quinn: Optimization Project Home</title>
 
     <!--<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet'>-->
+    <!--Inlining the css to optimze the page load. 
+    <link href="css/style-min.css" rel="stylesheet">-->
     <style>
      
       html { 
@@ -35,9 +37,13 @@
       }
       
       a { color: #12C; }
+      
       a:visited { color: #61C; }
+      
       a:focus { outline: thin dotted; }
-      a:hover, a:active { color: #c00; outline: 0; }
+      
+      a:hover, 
+      a:active { color: #c00; outline: 0; }
       
       b, 
       strong { font-weight: bold; }
@@ -94,22 +100,30 @@
       }
       
       .content { padding: 1em 1em; }
+      
       .content li { list-style-type: none; font-size: 1.1em;}
+      
       li img { float:left; padding-right: 1em; }
+      
       li p { font-size: 0.9em; font-style: italic; }
+      
       footer {
       padding: 0 0.5em;
       border-top: 1px solid #ccc;
       }
+      
       footer span { float: right; font-style: italic; }
+      
       /* Smartphones (portrait) */
       @media only screen and (max-width: 480px) {
+          
       body { font-size: 12px;}
+      
       header p { padding-left: 4.5em;}
+      
       }
     </style>
   
-    <!--<link href="css/style-min.css" rel="stylesheet">-->
     <link href="css/print-min.css" rel="stylesheet" media="print">
   </head>
 
@@ -156,7 +170,25 @@
       <p>&copy; Web Performance 2014 <span id="crp-stats"></span></p>
     </footer>
     <script async src="http://www.google-analytics.com/analytics.js"></script>
-    <script src="js/perfmatters-min.js"></script>
+    
+    <script>
+        //Bringing this script inline to measure performance gains: src="js/perfmatters.js"
+        // Measuring the Critical Rendering Path with Navigation Timing
+        // https://developers.google.com/web/fundamentals/performance/critical-rendering-path/measure-crp
+
+        function logCRP() {
+        var t = window.performance.timing,
+            dcl = t.domContentLoadedEventStart - t.domLoading,
+            complete = t.domComplete - t.domLoading;
+        var stats = document.getElementById("crp-stats");
+        stats.textContent = 'DCL: ' + dcl + 'ms, onload: ' + complete + 'ms';
+        }
+
+        window.addEventListener("load", function(event) {
+        logCRP();
+        });
+    </script>
+
     <script>
       (function(w,g){w['GoogleAnalyticsObject']=g;
       w[g]=w[g]||function(){(w[g].q=w[g].q||[]).push(arguments)};w[g].l=1*new Date();})(window,'ga');
