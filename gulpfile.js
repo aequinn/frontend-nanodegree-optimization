@@ -9,6 +9,7 @@ var jshint = require('gulp-jshint'),
     pngQuant = require('imagemin-pngquant'),
     imageResize = require('gulp-image-resize'),
     htmlReplace = require('gulp-html-replace'),
+    concat = require('gulp-concat'),
     gulp = require('gulp');
 
 /*Compression Tasks for js*/
@@ -20,11 +21,19 @@ gulp.task('jsCompress', function(){
   .pipe(jsTasks());
 });
 
-/*Compression Tasks for css*/
+/*Concat css for pizza html*/
+gulp.task('cssPizza', function(){
+   return gulp.src('./src/views/css/*.css')
+   .pipe(concat('all-styles-min.css'))
+   .pipe(cssMinify())
+   .pipe(gulp.dest('./dist/views/css/')); 
+});
+
+/*Compression Tasks for css main pages*/
 var cssMinifyTasks = lazypipe().pipe(cssMinify).pipe(rename,{suffix: "-min"});
-var cssTasks = cssMinifyTasks.pipe(gulp.dest, 'dist');
+var cssTasks = cssMinifyTasks.pipe(gulp.dest, './dist/css/');
 gulp.task('cssCompress', function(){
-  return gulp.src(['./src/**/*.css'])
+  return gulp.src(['./src/css/*.css'])
   .pipe(cssTasks());
 });
 
@@ -75,9 +84,9 @@ gulp.task('htmlReplace', function(){
     src: 'css/style',
     tpl: '<link rel="stylesheet" href="./%s-min.css">'
   },
-  cssGrid: {
-    src: 'bootstrap-grid',
-    tpl: '<link rel="stylesheet" href="./css/%s-min.css">'
+  pizzaCSS: {
+    src: 'all-styles-min.css',
+    tpl: '<link rel="stylesheet" href="./css/%s">'
   }
   }))
   .pipe(gulp.dest('dist'));
@@ -92,4 +101,4 @@ gulp.task('watchCSS', function(){
   gulp.watch(['./src/**/*.css'], ['cssCompress']);
 });
 
-gulp.task('default',['jsCompress','cssCompress','imgResize100','imageResize480','imgCompress','htmlReplace']);
+gulp.task('default',['jsCompress','cssCompress','cssPizza','imgResize100','imageResize480','imgCompress','htmlReplace']);
