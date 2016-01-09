@@ -59,6 +59,14 @@ gulp.task('imageResize480', function(){
   .pipe(gulp.dest('./src'));
 });
 
+/*Resize to 300*/
+gulp.task('imageResize300', function(){
+  return gulp.src(['./src/**/**/pizzeria.jpg'])
+  .pipe(imageResize({imageMagick: true, width : 300, quality: .5}))
+  .pipe(rename({suffix : '-300'}))
+  .pipe(gulp.dest('./src'));
+});
+
 /*Move html*/
 // gulp.task('htmlMove', function(){
 //   return gulp.src(['./src/**/*.html'])
@@ -101,4 +109,4 @@ gulp.task('watchCSS', function(){
   gulp.watch(['./src/**/*.css'], ['cssCompress']);
 });
 
-gulp.task('default',['jsCompress','cssCompress','cssPizza','imgResize100','imageResize480','imgCompress','htmlReplace']);
+gulp.task('default',['jsCompress','cssCompress','cssPizza','imgResize100','imageResize300','imageResize480','imgCompress','htmlReplace']);
