@@ -423,10 +423,14 @@ var resizePizzas = function(size) {
 
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
+      
+    //Create a collection to iterate through
     var pizzas = document.querySelectorAll(".randomPizzaContainer");
+    //Call size once to use as we iterate through all the pizza containers
+    var switchSize = (sizeSwitcher(size));
     
     for (var i = 0; i < pizzas.length; i++) {
-      pizzas[i].style.width = sizeSwitcher(size) +"%";
+      pizzas[i].style.width = switchSize +"%";
     }
     
     // Changes the slider value to a percent width
