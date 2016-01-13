@@ -23,4 +23,4 @@ The second challenge was to get the Frames per Second in views/pizza.html to 60 
 You might find the FPS Counter/HUD Display useful in Chrome developer tools described here: [Chrome Dev Tools tips-and-tricks](https://developer.chrome.com/devtools/docs/tips-and-tricks).
 
 ####Setting this project up for yourself
-You can use git to clone this project and use npm install to get all the modules required.
+You can use git to clone this project and use 'npm install' to get gulp and all the dependencies I used.
